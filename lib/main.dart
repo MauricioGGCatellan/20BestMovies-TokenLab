@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: '20 Best Movies'),
+      home: const HomePage(title: '20 Best Movies'),
     );
   }
 }
