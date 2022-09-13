@@ -8,7 +8,6 @@ class HomepageModel {
   List<String> titles = [];
   List<String> posterUrls = [];
 
-  List<dynamic> data = [];
   String _url = 'https://desafio-mobile.nyc3.digitaloceanspaces.com/movies-v2';
 
   _updateFields(info) {

@@ -38,13 +38,28 @@ class _MyHomePageState extends State<HomePage> {
                       return Text('Waiting!');
                     case ConnectionState.done:
                       return ListView.builder(
-                        itemCount: homepageModel.ids.length ~/ 2,
+                        itemCount: homepageModel.ids.length % 2 == 0
+                            ? homepageModel.ids.length ~/ 2
+                            : homepageModel.ids.length ~/ 2 + 1,
                         itemBuilder: (context, index) {
                           return ListTile(
                             title: Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceEvenly,
-                                children: [MovieCard(), MovieCard()]),
+                                children: [
+                                  MovieCard(
+                                      ranking: index * 2,
+                                      title: homepageModel.titles[index * 2],
+                                      posterUrl:
+                                          homepageModel.posterUrls[index * 2]),
+                                  if (index * 2 + 1 < homepageModel.ids.length)
+                                    MovieCard(
+                                        ranking: index * 2 + 1,
+                                        title:
+                                            homepageModel.titles[index * 2 + 1],
+                                        posterUrl: homepageModel
+                                            .posterUrls[index * 2 + 1])
+                                ]),
                           );
                         },
                       );
