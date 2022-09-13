@@ -4,6 +4,8 @@ import '../models/api_comm.dart';
 
 class MoviepageModel {
   int id;
+  late String title;
+  late String posterUrl;
   late String releaseDate;
   late double voteAverage;
   late String tagline;
@@ -13,10 +15,12 @@ class MoviepageModel {
 
   _updateFields(info) {
     var jsonObj = jsonDecode(info);
-    releaseDate = jsonObj["release_date"];
-    voteAverage = jsonObj["vote_average"];
-    tagline = jsonObj["tagline"];
-    overview = jsonObj["overview"];
+    title = jsonObj['title'];
+    posterUrl = jsonObj['poster_url'];
+    releaseDate = jsonObj['release_date'];
+    voteAverage = jsonObj['vote_average'];
+    tagline = jsonObj['tagline'];
+    overview = jsonObj['overview'];
   }
 
   Future requestData() async {

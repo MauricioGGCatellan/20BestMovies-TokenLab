@@ -56,6 +56,7 @@ class _MyHomePageState extends State<HomePage> {
                                             MainAxisAlignment.spaceEvenly,
                                         children: [
                                           MovieCard(
+                                              id: homepageModel.ids[index * 2],
                                               ranking: index * 2 + 1,
                                               title: homepageModel
                                                   .titles[index * 2],
@@ -64,6 +65,8 @@ class _MyHomePageState extends State<HomePage> {
                                           if (index * 2 + 1 <
                                               homepageModel.ids.length)
                                             MovieCard(
+                                                id: homepageModel
+                                                    .ids[index * 2 + 1],
                                                 ranking: index * 2 + 1 + 1,
                                                 title: homepageModel
                                                     .titles[index * 2 + 1],

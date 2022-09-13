@@ -12,7 +12,6 @@ class HomepageModel {
       'https://desafio-mobile.nyc3.digitaloceanspaces.com/movies-v2';
 
   _updateFields(info) {
-    print(info);
     var jsonList = jsonDecode(info);
 
     for (var jsonObj in jsonList) {
