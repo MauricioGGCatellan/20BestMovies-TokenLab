@@ -27,22 +27,26 @@ class _MovieCardState extends State<MovieCard> {
             },
             child: SizedBox(
               width: 300,
-              height: 300, //pode mudar
+              height: 400, //pode mudar
               child: Column(children: [
-                Image.network(
-                  widget.posterUrl,
-                  errorBuilder: ((context, error, stackTrace) =>
-                      Image.asset('assets/images/place_holder.png')),
-                  loadingBuilder: (context, child, loadingProgress) {
-                    if (loadingProgress == null) return child;
-                    return Center(
-                      child: CircularProgressIndicator(),
-                    );
-                  },
-                ),
+                SizedBox(
+                    width: 200,
+                    height: 300,
+                    child: Image.network(
+                      widget.posterUrl,
+                      errorBuilder: ((context, error, stackTrace) => SizedBox(
+                          child:
+                              Image.asset('assets/images/place_holder.png'))),
+                      loadingBuilder: (context, child, loadingProgress) {
+                        if (loadingProgress == null) return child;
+                        return Center(
+                          child: CircularProgressIndicator(),
+                        );
+                      },
+                    )),
                 ListTile(
                   leading: Icon(Icons.ondemand_video),
-                  title: Text('Number $widget.ranking'),
+                  title: Text('Number ${widget.ranking}'),
                   subtitle: Text(
                     widget.title,
                     style: TextStyle(color: Colors.black.withOpacity(0.6)),
