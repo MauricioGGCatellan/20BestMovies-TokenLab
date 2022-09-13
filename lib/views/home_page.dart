@@ -1,17 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:movies_app/components/movie_card.dart';
+import 'package:movies_app/view-models/homepage_model.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key, required this.title});
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
 
   final String title;
 
@@ -20,22 +12,47 @@ class HomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<HomePage> {
+  final homepageModel = HomepageModel();
+  late Future dataRequest;
+
+  @override
+  void initState() {
+    super.initState();
+    dataRequest = homepageModel.requestData();
+  }
+
   @override
   Widget build(BuildContext context) {
+    //print(homepageModel.data);
+    //print(homepageModel.ids);
     return Scaffold(
         appBar: AppBar(
           title: Text(widget.title),
         ),
         body: Center(
-            child: ListView.builder(
-          itemCount: 10,
-          itemBuilder: (context, index) {
-            return ListTile(
-              title: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [MovieCard(), MovieCard()]),
-            );
-          },
-        )));
+            child: FutureBuilder(
+                future: dataRequest,
+                builder: (context, snapshot) {
+                  switch (snapshot.connectionState) {
+                    case ConnectionState.waiting:
+                      return Text('Waiting!');
+                    case ConnectionState.done:
+                      return ListView.builder(
+                        itemCount: homepageModel.ids.length ~/ 2,
+                        itemBuilder: (context, index) {
+                          return ListTile(
+                            title: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [MovieCard(), MovieCard()]),
+                          );
+                        },
+                      );
+                    case ConnectionState.active:
+                      return Text('Error!');
+                    case ConnectionState.none:
+                      return Text('Error!');
+                  }
+                })));
   }
 }
