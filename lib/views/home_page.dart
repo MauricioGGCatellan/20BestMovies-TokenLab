@@ -43,7 +43,7 @@ class _MyHomePageState extends State<HomePage> {
                         builder: (context, snapshot) {
                           switch (snapshot.connectionState) {
                             case ConnectionState.waiting:
-                              return Text('Waiting!');
+                              return const Text('Waiting!');
                             case ConnectionState.done:
                               return ListView.builder(
                                 itemCount: homepageModel.ids.length % 2 == 0
@@ -74,9 +74,9 @@ class _MyHomePageState extends State<HomePage> {
                                 },
                               );
                             case ConnectionState.active:
-                              return Text('Error!');
+                              return const Text('Error!');
                             case ConnectionState.none:
-                              return Text('Error!');
+                              return const Text('Error!');
                           }
                         })))));
   }

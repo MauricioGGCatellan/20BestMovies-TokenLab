@@ -1,12 +1,12 @@
-import 'package:http/http.dart' as http;
 import 'http_methods.dart';
 
 class APIComm {
   static List<dynamic> cache = [];
 
-  static Future getData(String url) async {
+  static Future getData(String url, key) async {
     try {
-      if (!APIComm.cache.isNotEmpty) {
+      if (APIComm.cache.isEmpty || !APIComm.cache.contains(key)) {
+        cache.add(key);
         cache.add(await httpFetch(url));
       }
     } catch (e) {}
