@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
         ),
         initialRoute: '/',
         routes: {
-          '/': (context) => HomePage(title: 'Top 20 Movies'),
+          '/': (context) => const HomePage(title: 'Top 20 Movies'),
         },
         onGenerateRoute: (RouteSettings settings) {
           if (settings.name == '/movie') {

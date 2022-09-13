@@ -8,6 +8,7 @@ class MoviepageModel {
   late String posterUrl;
   late String releaseDate;
   late double voteAverage;
+  List<String> genres = [];
   late String tagline;
   late String overview;
 
@@ -19,6 +20,9 @@ class MoviepageModel {
     posterUrl = jsonObj['poster_url'];
     releaseDate = jsonObj['release_date'];
     voteAverage = jsonObj['vote_average'];
+    for (String genre in jsonObj['genres']) {
+      genres.add(genre);
+    }
     tagline = jsonObj['tagline'];
     overview = jsonObj['overview'];
   }
