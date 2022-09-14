@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
 
-class ErrorSign extends StatelessWidget {
-  const ErrorSign({super.key});
+class ErrorSign extends StatefulWidget {
+  const ErrorSign({super.key, required this.callback});
 
+  final Function callback;
+
+  @override
+  State<ErrorSign> createState() => _ErrorSignState();
+}
+
+class _ErrorSignState extends State<ErrorSign> {
   @override
   Widget build(BuildContext context) {
     return Column(mainAxisAlignment: MainAxisAlignment.center, children: [
@@ -16,7 +23,7 @@ class ErrorSign extends StatelessWidget {
       const SizedBox(height: 30),
       ElevatedButton(
           onPressed: () {
-            Navigator.of(context).pushNamed('/');
+            widget.callback();
           },
           style: ButtonStyle(
             backgroundColor: MaterialStateProperty.all(

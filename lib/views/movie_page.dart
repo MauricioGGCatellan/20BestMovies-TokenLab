@@ -18,7 +18,7 @@ class MoviePage extends StatefulWidget {
 class _MoviePageState extends State<MoviePage> {
   final int id;
   late MoviepageModel moviepageModel;
-  late Future dataRequest;
+  //late Future dataRequest;
 
   _MoviePageState(this.id) {
     moviepageModel = MoviepageModel(id);
@@ -27,7 +27,11 @@ class _MoviePageState extends State<MoviePage> {
   @override
   void initState() {
     super.initState();
-    dataRequest = moviepageModel.requestData();
+    //dataRequest = moviepageModel.requestData();
+  }
+
+  void callback() {
+    setState(() {});
   }
 
   @override
@@ -39,7 +43,7 @@ class _MoviePageState extends State<MoviePage> {
           title: Text(widget.title),
         ),
         body: FutureBuilder(
-            future: dataRequest,
+            future: moviepageModel.requestData(),
             builder: (context, snapshot) {
               if (!snapshot.hasError) {
                 switch (snapshot.connectionState) {
@@ -122,7 +126,8 @@ class _MoviePageState extends State<MoviePage> {
                     return const Text('Error!');
                 }
               } else {
-                return ErrorSign();
+                return const Text('Error!');
+                //return ErrorSign();
               }
             }));
   }

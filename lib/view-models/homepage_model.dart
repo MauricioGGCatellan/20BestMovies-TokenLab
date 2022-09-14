@@ -9,7 +9,7 @@ class HomepageModel {
   List<String> posterUrls = [];
 
   final String _url =
-      'https://desafio-mobile.nyc3.digitaloceanspaceskkk.com/movies-v2';
+      'https://desafio-mobile.nyc3.digitaloceanspaces.com/movies-v2';
 
   _updateFields(info) {
     var jsonList = jsonDecode(info);
