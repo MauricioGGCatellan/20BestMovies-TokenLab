@@ -9,6 +9,8 @@ class APIComm {
         cache.add(key);
         cache.add(await httpFetch(url));
       }
-    } catch (e) {}
+    } catch (e) {
+      return Future.error(e.toString());
+    }
   }
 }

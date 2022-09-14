@@ -9,7 +9,7 @@ class HomepageModel {
   List<String> posterUrls = [];
 
   final String _url =
-      'https://desafio-mobile.nyc3.digitaloceanspaces.com/movies-v2';
+      'https://desafio-mobile.nyc3.digitaloceanspaceskkk.com/movies-v2';
 
   _updateFields(info) {
     var jsonList = jsonDecode(info);
@@ -22,12 +22,16 @@ class HomepageModel {
   }
 
   Future requestData() async {
-    if (!APIComm.cache.contains(listId)) {
-      await APIComm.getData(_url, listId);
+    try {
+      if (!APIComm.cache.contains(listId)) {
+        await APIComm.getData(_url, listId);
+      }
+
+      var info = APIComm.cache[APIComm.cache.indexOf(listId) + 1];
+
+      _updateFields(info);
+    } catch (e) {
+      return Future.error(e.toString());
     }
-
-    var info = APIComm.cache[APIComm.cache.indexOf(listId) + 1];
-
-    _updateFields(info);
   }
 }
